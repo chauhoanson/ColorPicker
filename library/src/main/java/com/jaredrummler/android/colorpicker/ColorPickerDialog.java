@@ -44,6 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -747,7 +748,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
 
     ColorPickerDialogListener colorPickerDialogListener;
     @StringRes int dialogTitle = R.string.cpv_default_title;
-    @StringRes int dialogTitleIcon = 0;
+    @DrawableRes int dialogTitleIcon = 0;
     @StringRes int presetsButtonText = R.string.cpv_presets;
     @StringRes int customButtonText = R.string.cpv_custom;
     @StringRes int selectedButtonText = R.string.cpv_select;
