@@ -107,6 +107,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
   private static final String ARG_ALLOW_PRESETS = "allowPresets";
   private static final String ARG_ALLOW_CUSTOM = "allowCustom";
   private static final String ARG_DIALOG_TITLE = "dialogTitle";
+  private static final String ARG_DIALOG_TITLE_ICON = "dialogTitleIcon";
   private static final String ARG_SHOW_COLOR_SHADES = "showColorShades";
   private static final String ARG_COLOR_SHAPE = "colorShape";
   private static final String ARG_PRESETS_BUTTON_TEXT = "presetsButtonText";
@@ -194,6 +195,11 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     int dialogTitleStringRes = getArguments().getInt(ARG_DIALOG_TITLE);
     if (dialogTitleStringRes != 0) {
       builder.setTitle(dialogTitleStringRes);
+    }
+
+    int dialogTitleIconDrawableRes = getArguments().getInt(ARG_DIALOG_TITLE_ICON);
+    if (dialogTitleIconDrawableRes != 0) {
+      builder.setIcon(dialogTitleIconDrawableRes);
     }
 
     presetsButtonStringRes = getArguments().getInt(ARG_PRESETS_BUTTON_TEXT);
@@ -741,6 +747,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
 
     ColorPickerDialogListener colorPickerDialogListener;
     @StringRes int dialogTitle = R.string.cpv_default_title;
+    @StringRes int dialogTitleIcon = 0;
     @StringRes int presetsButtonText = R.string.cpv_presets;
     @StringRes int customButtonText = R.string.cpv_custom;
     @StringRes int selectedButtonText = R.string.cpv_select;
@@ -836,6 +843,17 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     }
 
     /**
+     * Set the dialog title icon drawable resource id
+     *
+     * @param dialogTitleIcon The drawable resource used for the dialog title icon
+     * @return This builder object for chaining method calls
+     */
+    public Builder setDialogTitleIcon(@DrawableRes int dialogTitleIcon) {
+      this.dialogTitleIcon = dialogTitleIcon;
+      return this;
+    }
+
+    /**
      * Set the dialog id used for callbacks
      *
      * @param dialogId The id that is sent back to the {@link ColorPickerDialogListener}.
@@ -919,6 +937,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
       args.putBoolean(ARG_ALLOW_CUSTOM, allowCustom);
       args.putBoolean(ARG_ALLOW_PRESETS, allowPresets);
       args.putInt(ARG_DIALOG_TITLE, dialogTitle);
+      args.putInt (ARG_DIALOG_TITLE_ICON, dialogTitleIcon);
       args.putBoolean(ARG_SHOW_COLOR_SHADES, showColorShades);
       args.putInt(ARG_COLOR_SHAPE, colorShape);
       args.putInt(ARG_PRESETS_BUTTON_TEXT, presetsButtonText);
