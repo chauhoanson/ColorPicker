@@ -116,6 +116,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
   private static final String ARG_PRESETS_BUTTON_TEXT = "presetsButtonText";
   private static final String ARG_CUSTOM_BUTTON_TEXT = "customButtonText";
   private static final String ARG_SELECTED_BUTTON_TEXT = "selectedButtonText";
+  private static final String ARG_NEGATIVE_BUTTON_TEXT = "negativeButtonText";
 
   ColorPickerDialogListener colorPickerDialogListener;
   FrameLayout rootView;
@@ -219,6 +220,11 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
 
     if (neutralButtonStringRes != 0) {
       builder.setNeutralButton(neutralButtonStringRes, null);
+    }
+
+    int negativeButtonStringRes = getArguments().getInt(ARG_NEGATIVE_BUTTON_TEXT);
+    if(negativeButtonStringRes != 0) {
+      builder.setNegativeButton(negativeButtonStringRes, null);
     }
 
     AlertDialog dialog = builder.create();
@@ -759,6 +765,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     @StringRes int presetsButtonText = R.string.cpv_presets;
     @StringRes int customButtonText = R.string.cpv_custom;
     @StringRes int selectedButtonText = R.string.cpv_select;
+    @StringRes int negativeButtonText = 0;
     @DialogType int dialogType = TYPE_PRESETS;
     int[] presets = MATERIAL_COLORS;
     @ColorInt int color = Color.BLACK;
@@ -816,6 +823,17 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
       this.customButtonText = customButtonText;
       return this;
     }
+
+      /**
+       * Set the negative button text string resource id
+       *
+       * @param negativeButtonText The string resource used for the negative button text
+       * @return This builder object for chaining method calls
+       */
+      public Builder setNegativeButtonText(@StringRes int negativeButtonText) {
+          this.negativeButtonText = negativeButtonText;
+          return this;
+      }
 
     /**
      * Set which dialog view to show.
@@ -963,6 +981,8 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
       args.putInt(ARG_PRESETS_BUTTON_TEXT, presetsButtonText);
       args.putInt(ARG_CUSTOM_BUTTON_TEXT, customButtonText);
       args.putInt(ARG_SELECTED_BUTTON_TEXT, selectedButtonText);
+      args.putInt(ARG_NEGATIVE_BUTTON_TEXT, negativeButtonText);
+
       dialog.setArguments(args);
       return dialog;
     }
