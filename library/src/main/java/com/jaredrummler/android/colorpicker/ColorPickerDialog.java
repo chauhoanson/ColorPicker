@@ -599,7 +599,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     if (activity instanceof ColorPickerDialogListener) {
       ((ColorPickerDialogListener) activity).onColorSelected(dialogId, color);
     } else {
-      throw new IllegalStateException("The activity must implement ColorPickerDialogListener");
+//      throw new IllegalStateException("The activity must implement ColorPickerDialogListener");
     }
   }
 
@@ -889,6 +889,17 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
           this.dialogGravity = gravity;
           return this;
       }
+
+    /**
+     * Set the dialog listener
+     *
+     * @param colorPickerDialogListener The listener used for the dialog
+     * @return This builder object for chaining method calls
+     */
+    public Builder setListener(ColorPickerDialogListener colorPickerDialogListener) {
+      this.colorPickerDialogListener = colorPickerDialogListener;
+      return this;
+    }
 
     /**
      * Set the dialog id used for callbacks
