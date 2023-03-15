@@ -286,7 +286,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
    * @param colorPickerDialogListener The callback invoked when a color is selected or the dialog is dismissed.
    */
   public void setColorPickerDialogListener(ColorPickerDialogListener colorPickerDialogListener) {
-//    this.colorPickerDialogListener = colorPickerDialogListener;
+    this.colorPickerDialogListener = colorPickerDialogListener;
   }
 
   // region Custom Picker
@@ -889,17 +889,6 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
           this.dialogGravity = gravity;
           return this;
       }
-
-    /**
-     * Set the dialog listener
-     *
-     * @param colorPickerDialogListener The listener used for the dialog
-     * @return This builder object for chaining method calls
-     */
-    public Builder setListener(ColorPickerDialogListener colorPickerDialogListener) {
-      this.colorPickerDialogListener = colorPickerDialogListener;
-      return this;
-    }
 
     /**
      * Set the dialog id used for callbacks
