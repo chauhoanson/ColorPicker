@@ -29,6 +29,7 @@ import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -109,6 +110,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
   private static final String ARG_ALLOW_CUSTOM = "allowCustom";
   private static final String ARG_DIALOG_TITLE = "dialogTitle";
   private static final String ARG_DIALOG_TITLE_ICON = "dialogTitleIcon";
+  private static final String ARG_DIALOG_GRAVITY = "dialogGravity";
   private static final String ARG_SHOW_COLOR_SHADES = "showColorShades";
   private static final String ARG_COLOR_SHAPE = "colorShape";
   private static final String ARG_PRESETS_BUTTON_TEXT = "presetsButtonText";
@@ -219,7 +221,11 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
       builder.setNeutralButton(neutralButtonStringRes, null);
     }
 
-    return builder.create();
+    AlertDialog dialog = builder.create();
+    int dialogGravity = getArguments().getInt(ARG_DIALOG_GRAVITY);
+    dialog.getWindow().setGravity(dialogGravity);
+
+    return dialog;
   }
 
   @Override public void onStart() {
@@ -749,6 +755,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     ColorPickerDialogListener colorPickerDialogListener;
     @StringRes int dialogTitle = R.string.cpv_default_title;
     @DrawableRes int dialogTitleIcon = 0;
+    int dialogGravity = Gravity.CENTER;
     @StringRes int presetsButtonText = R.string.cpv_presets;
     @StringRes int customButtonText = R.string.cpv_custom;
     @StringRes int selectedButtonText = R.string.cpv_select;
@@ -854,6 +861,17 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
       return this;
     }
 
+      /**
+       * Set the dialog gravity
+       *
+       * @param gravity The gravity used for the dialog
+       * @return This builder object for chaining method calls
+       */
+      public Builder setDialogGravity(int gravity) {
+          this.dialogGravity = gravity;
+          return this;
+      }
+
     /**
      * Set the dialog id used for callbacks
      *
@@ -939,6 +957,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
       args.putBoolean(ARG_ALLOW_PRESETS, allowPresets);
       args.putInt(ARG_DIALOG_TITLE, dialogTitle);
       args.putInt (ARG_DIALOG_TITLE_ICON, dialogTitleIcon);
+      args.putInt (ARG_DIALOG_GRAVITY, dialogGravity);
       args.putBoolean(ARG_SHOW_COLOR_SHADES, showColorShades);
       args.putInt(ARG_COLOR_SHAPE, colorShape);
       args.putInt(ARG_PRESETS_BUTTON_TEXT, presetsButtonText);
