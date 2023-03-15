@@ -286,7 +286,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
    * @param colorPickerDialogListener The callback invoked when a color is selected or the dialog is dismissed.
    */
   public void setColorPickerDialogListener(ColorPickerDialogListener colorPickerDialogListener) {
-    this.colorPickerDialogListener = colorPickerDialogListener;
+//    this.colorPickerDialogListener = colorPickerDialogListener;
   }
 
   // region Custom Picker
